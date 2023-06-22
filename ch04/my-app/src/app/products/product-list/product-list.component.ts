@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class ProductListComponent {
   selectedProduct = '';
 
-  onBuy(): void {
-    window.alert(`You just bought ${this.selectedProduct}`);
+  onBuy(name: string): void {
+    window.alert(`You just bought ${name}`);
   }
 }

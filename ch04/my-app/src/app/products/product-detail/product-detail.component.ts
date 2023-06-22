@@ -7,9 +7,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ProductDetailComponent {
   @Input() name = '';
-  @Output() bought = new EventEmitter();
+  @Output() bought = new EventEmitter<string>();
 
   buy(): void {
-    this.bought.emit();
+    this.bought.emit(this.name);
   }
 }
