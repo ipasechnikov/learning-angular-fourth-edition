@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product-detail',
@@ -7,4 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductDetailComponent {
   @Input() name = '';
+  @Output() bought = new EventEmitter();
+
+  buy(): void {
+    this.bought.emit();
+  }
 }
