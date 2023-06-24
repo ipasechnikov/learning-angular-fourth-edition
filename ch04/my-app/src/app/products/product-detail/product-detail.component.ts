@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-product-detail',
@@ -7,9 +7,17 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEn
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnInit {
   @Input() name = '';
   @Output() bought = new EventEmitter<string>();
+
+  constructor() {
+    console.log(`Name is ${this.name} in the constructor`);
+  }
+
+  ngOnInit(): void {
+    console.log(`Name is ${this.name} in ngOnInit`);
+  }
 
   get productName(): string {
     console.log(`Get ${this.name}`);
