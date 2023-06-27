@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-product-detail',
@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnChanges {
   @Input() name = '';
   @Output() bought = new EventEmitter<string>();
 
@@ -17,6 +17,17 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(`Name is ${this.name} in ngOnInit`);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const product = changes['name'];
+    if (product.isFirstChange()) {
+      return;
+    }
+
+    const oldValue = product.previousValue;
+    const newValue = product.currentValue;
+    console.log(`Product changed from ${oldValue} to ${newValue}`);
   }
 
   get productName(): string {
