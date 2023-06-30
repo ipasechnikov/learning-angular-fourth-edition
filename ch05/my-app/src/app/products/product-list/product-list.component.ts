@@ -10,6 +10,7 @@ export class ProductListComponent implements AfterViewInit {
   @ViewChild(ProductDetailComponent) productDetail?: ProductDetailComponent;
 
   selectedProduct = '';
+  products = ['Webcam', 'Microphone', 'Wireless keyboard'];
 
   ngAfterViewInit(): void {
     if (this.productDetail) {
@@ -19,5 +20,9 @@ export class ProductListComponent implements AfterViewInit {
 
   onBuy(name: string): void {
     window.alert(`You just bought ${name}`);
+  }
+
+  trackByProducts(index: number, name: string): string {
+    return name;
   }
 }
