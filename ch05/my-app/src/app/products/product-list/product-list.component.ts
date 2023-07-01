@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
-import { Product } from 'src/app/product';
+import { Product } from 'src/app/products/product';
 
 @Component({
   selector: 'app-product-list',

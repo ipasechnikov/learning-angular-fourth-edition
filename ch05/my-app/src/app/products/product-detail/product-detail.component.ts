@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
-import { Product } from 'src/app/product';
+import { Product } from 'src/app/products/product';
 
 @Component({
   selector: 'app-product-detail',
