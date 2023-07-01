@@ -1,7 +1,9 @@
-<div *ngIf="name">
+<div *ngIf="product">
   <h2>Product Details</h2>
-  <h3>{{name}}</h3>
-  <div [ngSwitch]="name">
+  <h3>{{product.name}}</h3>
+  <span>{{product.price | currency: 'EUR'}}</span>
+  <p>{{product | json}}</p>
+  <div [ngSwitch]="product.name">
     <p *ngSwitchCase="'Webcam'">
       Product is used for video
     </p>
@@ -13,5 +15,4 @@
     </p>
   </div>
   <button (click)="buy()">Buy Now</button>
-  <span>{{productName}}</span>
 </div>
