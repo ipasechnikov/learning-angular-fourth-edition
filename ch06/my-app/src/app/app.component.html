@@ -1,0 +1,8 @@
+<app-product-list></app-product-list>
+<input appNumeric />
+
+<div *appPermission="['admin', 'agent']">
+  <p>You are authorized to see this element. Congrats!</p>
+</div>
+
+<p appCopyright></p>
