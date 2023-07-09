@@ -1,8 +1,7 @@
 <h2>Product List</h2>
 <ul>
   <li *ngFor="let product of products | sort; let i=index; trackBy: trackByProducts" (click)="selectedProduct = product">
-    {{i+1}}. {{product.name | uppercase}}
-    {{i+1}}. {{product.name | lowercase}}
+    <app-product-view [id]="i"></app-product-view>
   </li>
 </ul>
 <app-product-detail
