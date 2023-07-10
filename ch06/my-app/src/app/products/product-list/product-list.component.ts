@@ -8,7 +8,8 @@ import { ProductViewService } from '../product-view/product-view.service';
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  providers: [ProductsService]
+  providers: [ProductsService],
+  viewProviders: [ProductViewService],
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
   @ViewChild(ProductDetailComponent) productDetail?: ProductDetailComponent;
