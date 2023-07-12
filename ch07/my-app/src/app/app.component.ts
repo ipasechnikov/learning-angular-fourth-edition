@@ -10,17 +10,19 @@ export class AppComponent {
   title = 'my-app';
 
   constructor() {
-    this.changeTitle(this.setTitle);
+    this.onComplete().then(this.setTitle);
   }
 
   private setTitle = () => {
     this.title = 'Learning Angular';
   };
 
-  private changeTitle(callback: Function) {
-    setTimeout(() => {
-      callback();
-    }, 2000);
+  private onComplete(): Promise<void> {
+    return new Promise<void>(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, 2000);
+    });
   }
 
 }
