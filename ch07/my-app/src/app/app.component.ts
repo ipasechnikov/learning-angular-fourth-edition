@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +9,25 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   title = 'my-app';
+  title$ = new Observable(observer => {
+    setInterval(() => {
+      observer.next();
+    }, 2000);
+  });
 
   constructor() {
-    this.onComplete().then(this.setTitle);
+    // this.onComplete().then(this.setTitle);
+    this.title$.subscribe(this.setTitle);
   }
 
   private setTitle = () => {
-    this.title = 'Learning Angular';
+    const timestamp = new Date().getMilliseconds();
+    this.title = `Learning Angular (${timestamp})`;
   };
 
   private onComplete(): Promise<void> {
     return new Promise<void>(resolve => {
-      setTimeout(() => {
+      setInterval(() => {
         resolve();
       }, 2000);
     });
