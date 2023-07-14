@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,10 @@ export class AppComponent {
 
   constructor() {
     // this.onComplete().then(this.setTitle);
-    this.title$.subscribe(this.setTitle);
+    // this.title$.subscribe(this.setTitle);
+
+    const complete$ = from(this.onComplete());
+    complete$.subscribe(this.setTitle);
   }
 
   private setTitle = () => {
