@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { KeyLoggerComponent } from './key-logger/key-logger.component';
+import { ProductsModule } from './products/products.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { KeyLoggerComponent } from './key-logger/key-logger.component';
     KeyLoggerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ProductsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
