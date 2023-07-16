@@ -1,6 +1,6 @@
 <h2>Product List</h2>
 <ul>
-  <li *ngFor="let product of products | sort; let i=index; trackBy: trackByProducts" (click)="selectedProduct = product">
+  <li *ngFor="let product of (products$ | async)! | sort; let i=index; trackBy: trackByProducts" (click)="selectedProduct = product">
     <app-product-view [id]="i"></app-product-view>
   </li>
 </ul>
@@ -12,9 +12,3 @@
 <ng-template #noProduct>
   <p>No product selected!</p>
 </ng-template>
-
-<h3>Offers</h3>
-<ng-template appProductHost></ng-template>
-
-<h2>Favorites</h2>
-<app-favorites></app-favorites>
