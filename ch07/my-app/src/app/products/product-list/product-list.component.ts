@@ -21,9 +21,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   constructor(private readonly productService: ProductsService) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(products => {
-      this.products  = products;
-    });
+    this.getProducts();
   }
 
   ngAfterViewInit(): void {
@@ -39,4 +37,11 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   trackByProducts(index: number, product: Product): string {
     return product.name;
   }
+
+  private getProducts(): void {
+    this.productService.getProducts().subscribe(products => {
+      this.products  = products;
+    });
+  }
+
 }
