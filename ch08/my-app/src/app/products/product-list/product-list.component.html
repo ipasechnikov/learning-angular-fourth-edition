@@ -1,6 +1,6 @@
 <h2>Product List</h2>
 <ul>
-  <li *ngFor="let product of (products$ | async)! | sort">
+  <li *ngFor="let product of (products$ | async)! | sort" (click)="selectedProduct = product">
     {{product.name}}
   </li>
 </ul>
