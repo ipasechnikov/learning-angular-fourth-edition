@@ -5,8 +5,9 @@
   </li>
 </ul>
 <app-product-detail
-  *ngIf="selectedProduct; else noProduct" [product]="selectedProduct" (bought)="onBuy()"
->
+  *ngIf="selectedProduct; else noProduct"
+  [id]="selectedProduct.id"
+  (bought)="onBuy()">
 </app-product-detail>
 
 <ng-template #noProduct>

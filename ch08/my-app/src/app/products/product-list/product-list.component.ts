@@ -11,8 +11,7 @@ import { ProductViewService } from '../product-view/product-view.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit, AfterViewInit {
-  @ViewChild(ProductDetailComponent) productDetail?: ProductDetailComponent;
+export class ProductListComponent implements OnInit {
 
   selectedProduct: Product | undefined;
   products$: Observable<Product[]> | undefined;
@@ -23,18 +22,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.getProducts();
   }
 
-  ngAfterViewInit(): void {
-    if (this.productDetail) {
-      console.log(this.productDetail.product);
-    }
-  }
-
   onBuy(): void {
     window.alert(`You just bought ${this.selectedProduct?.name}`);
-  }
-
-  trackByProducts(index: number, product: Product): string {
-    return product.name;
   }
 
   private getProducts(): void {

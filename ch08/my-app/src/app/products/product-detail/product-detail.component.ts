@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Product } from 'src/app/products/product';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,16 +12,15 @@ import { Product } from 'src/app/products/product';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductDetailComponent implements OnChanges {
-  @Input() product: Product | undefined;
+  @Input() id = -1;
   @Output() bought = new EventEmitter<void>();
 
+  product$: Observable<Product> | undefined;
+
+  constructor(private readonly productService: ProductsService) { }
+
   ngOnChanges(changes: SimpleChanges): void {
-    const product = changes['product'];
-    if (!product.isFirstChange()) {
-      const oldValue = product.previousValue.name;
-      const newValue = product.currentValue.name;
-      console.log(`Product changed from ${oldValue} to ${newValue}`);
-    }
+    this.product$ = this.productService.getProduct(this.id);
   }
 
   buy(): void {
