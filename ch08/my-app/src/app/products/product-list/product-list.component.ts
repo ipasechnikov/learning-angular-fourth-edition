@@ -14,7 +14,7 @@ import { ProductViewService } from '../product-view/product-view.service';
 export class ProductListComponent implements OnInit {
 
   selectedProduct: Product | undefined;
-  products$: Observable<Product[]> | undefined;
+  products: Product[] = [];
 
   constructor(private readonly productService: ProductsService) { }
 
@@ -26,8 +26,14 @@ export class ProductListComponent implements OnInit {
     window.alert(`You just bought ${this.selectedProduct?.name}`);
   }
 
+  onAdd(product: Product): void {
+    this.products.push(product);
+  }
+
   private getProducts(): void {
-    this.products$ = this.productService.getProducts();
+    this.productService.getProducts().subscribe(products => {
+      this.products = products;
+    });
   }
 
 }
