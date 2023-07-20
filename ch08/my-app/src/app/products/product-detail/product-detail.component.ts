@@ -17,7 +17,7 @@ export class ProductDetailComponent implements OnChanges {
 
   product$: Observable<Product> | undefined;
 
-  constructor(private readonly productService: ProductsService) { }
+  constructor(private readonly productService: ProductsService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.product$ = this.productService.getProduct(this.id);
@@ -26,4 +26,11 @@ export class ProductDetailComponent implements OnChanges {
   buy(): void {
     this.bought.emit();
   }
+
+  changePrice(product: Product, price: number): void {
+    this.productService.updateProduct(product.id, price).subscribe(() => {
+      alert(`The price of ${product.name} was changed!`);
+    });
+  }
+
 }

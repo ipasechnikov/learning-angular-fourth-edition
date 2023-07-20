@@ -44,6 +44,10 @@ export class ProductsService {
     );
   }
 
+  updateProduct(id: number, price: number): Observable<void> {
+    return this.http.patch<void>(`${this.productsUrl}/${id}`, { price });
+  }
+
   private convertToProduct(product: ProductDTO): Product {
     return {
       id: product.id,
