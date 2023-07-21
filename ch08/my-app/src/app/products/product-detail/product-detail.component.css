@@ -5,3 +5,9 @@ h2 {
 input {
   margin-left: 5px;
 }
+
+.delete {
+  background-color: lightcoral;
+  color: white;
+  margin-left: 5px;
+}

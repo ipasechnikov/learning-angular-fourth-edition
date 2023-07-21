@@ -48,6 +48,10 @@ export class ProductsService {
     return this.http.patch<void>(`${this.productsUrl}/${id}`, { price });
   }
 
+  deleteProduct(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.productsUrl}/${id}`);
+  }
+
   private convertToProduct(product: ProductDTO): Product {
     return {
       id: product.id,

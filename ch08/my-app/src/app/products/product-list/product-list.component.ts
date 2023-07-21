@@ -30,6 +30,11 @@ export class ProductListComponent implements OnInit {
     this.products.push(product);
   }
 
+  onDelete(): void {
+    this.products = this.products.filter(product => product !== this.selectedProduct);
+    this.selectedProduct = undefined;
+  }
+
   private getProducts(): void {
     this.productService.getProducts().subscribe(products => {
       this.products = products;

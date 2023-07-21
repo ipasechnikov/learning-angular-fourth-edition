@@ -13,7 +13,8 @@ import { ProductsService } from '../products.service';
 })
 export class ProductDetailComponent implements OnChanges {
   @Input() id = -1;
-  @Output() bought = new EventEmitter<void>();
+  @Output() bought = new EventEmitter();
+  @Output() deleted = new EventEmitter();
 
   product$: Observable<Product> | undefined;
 
@@ -30,6 +31,12 @@ export class ProductDetailComponent implements OnChanges {
   changePrice(product: Product, price: number): void {
     this.productService.updateProduct(product.id, price).subscribe(() => {
       alert(`The price of ${product.name} was changed!`);
+    });
+  }
+
+  remove(product: Product): void {
+    this.productService.deleteProduct(product.id).subscribe(() => {
+      this.deleted.emit();
     });
   }
 
