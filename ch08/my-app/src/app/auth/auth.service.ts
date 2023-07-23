@@ -25,4 +25,8 @@ export class AuthService {
     this.token = '';
   }
 
+  get isLoggedIn(): boolean {
+    return this.token !== '';
+  }
+
 }

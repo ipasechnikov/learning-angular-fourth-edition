@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { AuthService } from 'src/app/auth/auth.service';
 import { Product } from 'src/app/products/product';
 import { ProductsService } from '../products.service';
 
@@ -8,8 +9,7 @@ import { ProductsService } from '../products.service';
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css'],
-  encapsulation: ViewEncapsulation.Emulated,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class ProductDetailComponent implements OnChanges {
   @Input() id = -1;
@@ -18,7 +18,10 @@ export class ProductDetailComponent implements OnChanges {
 
   product$: Observable<Product> | undefined;
 
-  constructor(private readonly productService: ProductsService) {}
+  constructor(
+    private readonly productService: ProductsService,
+    public readonly authService: AuthService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.product$ = this.productService.getProduct(this.id);
