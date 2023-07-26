@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
 
 import { AuthService } from 'src/app/auth/auth.service';
 import { Product } from 'src/app/products/product';
@@ -11,7 +12,7 @@ import { ProductsService } from '../products.service';
   styleUrls: ['./product-detail.component.css'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class ProductDetailComponent implements OnChanges {
+export class ProductDetailComponent implements OnInit, OnChanges {
   @Input() id = -1;
   @Output() bought = new EventEmitter();
   @Output() deleted = new EventEmitter();
@@ -20,8 +21,17 @@ export class ProductDetailComponent implements OnChanges {
 
   constructor(
     private readonly productService: ProductsService,
-    public readonly authService: AuthService
+    public readonly authService: AuthService,
+    private readonly route: ActivatedRoute
   ) {}
+
+  ngOnInit(): void {
+    this.product$ = this.route.paramMap.pipe(
+      switchMap(params => {
+        return this.productService.getProduct(Number(params.get('id')));
+      })
+    );
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.product$ = this.productService.getProduct(this.id);
