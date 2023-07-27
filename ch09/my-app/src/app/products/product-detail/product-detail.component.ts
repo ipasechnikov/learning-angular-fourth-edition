@@ -26,11 +26,8 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    this.product$ = this.route.paramMap.pipe(
-      switchMap(params => {
-        return this.productService.getProduct(Number(params.get('id')));
-      })
-    );
+    const id = this.route.snapshot.params['id'];
+    this.product$ = this.productService.getProduct(id);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
