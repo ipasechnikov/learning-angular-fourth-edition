@@ -4,9 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
 import { CartComponent } from './cart/cart.component';
-import { ProductsModule } from './products/products.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ProductsModule } from './products/products.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserModule,
     ProductsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
