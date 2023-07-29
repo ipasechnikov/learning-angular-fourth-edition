@@ -15,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
+    loadChildren: () => import('./about/about.module').then(m => m.AboutModule),
+    canLoad: [authGuard]
   },
   { path: '**', component: PageNotFoundComponent }
 ];
