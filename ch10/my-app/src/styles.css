@@ -42,3 +42,7 @@ label {
 .active {
   color: black;
 }
+
+form {
+  display: inline;
+}
