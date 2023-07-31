@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
@@ -46,8 +46,13 @@ export class ProductCreateComponent implements OnInit {
 
   private buildForm(): void {
     this.productForm = this.formBuilder.nonNullable.group({
-      name: this.formBuilder.nonNullable.control(''),
-      price: this.formBuilder.nonNullable.control<number | undefined>(undefined)
+      name: this.formBuilder.nonNullable.control(
+        '', Validators.required
+      ),
+      price: this.formBuilder.nonNullable.control<number | undefined>(
+        undefined,
+        [Validators.required, Validators.min(1)]
+      )
     });
   }
 
