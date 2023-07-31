@@ -10,4 +10,19 @@
   <div>
     <button type="submit">Create</button>
   </div>
+  <form formGroupName="info">
+    <h2>Product information</h2>
+    <div>
+      <label for="category">Category</label>
+      <input id="category" formControlName="category" />
+    </div>
+    <div>
+      <label for="descr">Description</label>
+      <input id="descr" formControlName="description" />
+    </div>
+    <div>
+      <label for="photo">Photo URL</label>
+      <input id="photo" formControlName="photo" />
+    </div>
+  </form>
 </form>

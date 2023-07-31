@@ -14,8 +14,17 @@ export class ProductCreateComponent {
   @Output() added = new EventEmitter<Product>();
 
   productForm = new FormGroup({
-    name: new FormControl('', { nonNullable: true }),
-    price: new FormControl<number | undefined>(undefined, { nonNullable: true })
+    name: new FormControl('', {
+      nonNullable: true
+    }),
+    price: new FormControl<number | undefined>(undefined, {
+      nonNullable: true
+    }),
+    info: new FormGroup({
+      category: new FormControl(''),
+      description: new FormControl(''),
+      image: new FormControl('')
+    })
   });
 
   constructor(private readonly productService: ProductsService) { }
