@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
@@ -9,25 +9,19 @@ import { ProductsService } from '../products.service';
   templateUrl: './product-create.component.html',
   styleUrls: ['./product-create.component.css']
 })
-export class ProductCreateComponent {
+export class ProductCreateComponent implements OnInit {
 
   @Output() added = new EventEmitter<Product>();
 
-  productForm = new FormGroup({
-    name: new FormControl('', {
-      nonNullable: true
-    }),
-    price: new FormControl<number | undefined>(undefined, {
-      nonNullable: true
-    }),
-    info: new FormGroup({
-      category: new FormControl(''),
-      description: new FormControl(''),
-      image: new FormControl('')
-    })
-  });
+  productForm!: FormGroup<{
+    name: FormControl<string>,
+    price: FormControl<number | undefined>
+  }>;
 
-  constructor(private readonly productService: ProductsService) { }
+  constructor(
+    private readonly productService: ProductsService,
+    private readonly formBuilder: FormBuilder
+  ) { }
 
   get name() {
     return this.productForm.controls.name;
@@ -37,6 +31,10 @@ export class ProductCreateComponent {
     return this.productForm.controls.price;
   }
 
+  ngOnInit(): void {
+    this.buildForm();
+  }
+
   createProduct(): void {
     this.productService.addProduct(
       this.name.value, Number(this.price.value)
@@ -44,6 +42,13 @@ export class ProductCreateComponent {
       this.productForm.reset();
       this.added.emit(product);
     })
+  }
+
+  private buildForm(): void {
+    this.productForm = this.formBuilder.nonNullable.group({
+      name: this.formBuilder.nonNullable.control(''),
+      price: this.formBuilder.nonNullable.control<number | undefined>(undefined)
+    });
   }
 
 }
