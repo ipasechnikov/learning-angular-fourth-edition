@@ -8,6 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { CartComponent } from './cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductsModule } from './products/products.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ProductsModule } from './products/products.module';
     ProductsModule,
     AppRoutingModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

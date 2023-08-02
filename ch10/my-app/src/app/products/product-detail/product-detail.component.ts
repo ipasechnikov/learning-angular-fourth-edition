@@ -5,6 +5,7 @@ import { Observable, of, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Product } from 'src/app/products/product';
 import { ProductsService } from '../products.service';
+import { CartService } from 'src/app/cart/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,7 +15,6 @@ import { ProductsService } from '../products.service';
 })
 export class ProductDetailComponent implements OnInit, OnChanges {
   @Input() id = -1;
-  @Output() bought = new EventEmitter();
   @Output() deleted = new EventEmitter();
 
   price: number | undefined;
@@ -24,7 +24,8 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   constructor(
     private readonly productService: ProductsService,
     public readonly authService: AuthService,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -38,8 +39,8 @@ export class ProductDetailComponent implements OnInit, OnChanges {
     this.product$ = this.productService.getProduct(this.id);
   }
 
-  buy(): void {
-    this.bought.emit();
+  buy(product: Product): void {
+    this.cartService.addProduct(product)
   }
 
   changePrice(product: Product, price: number): void {
