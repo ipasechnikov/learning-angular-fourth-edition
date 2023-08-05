@@ -27,8 +27,7 @@ import { ProductsModule } from './products/products.module';
     AuthModule,
     ReactiveFormsModule,
     CommonModule,
-    BrowserAnimationsModule,
-    MatButtonModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
