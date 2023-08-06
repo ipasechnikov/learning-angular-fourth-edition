@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable, Subject, map, takeUntil } from 'rxjs';
 
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
 import { priceRangeValidator } from '../price-range.directive';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-product-create',
@@ -20,6 +20,8 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
     price: FormControl<number | undefined>
   }>;
 
+  products: Product[] = [];
+  products$: Observable<Product[]> | undefined;
   showPriceRangeHint: boolean = false;
 
   private unsubscribe$: Subject<void> = new Subject<void>();
@@ -46,6 +48,14 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
         this.showPriceRangeHint = price > 1 && price < 10000;
       }
     });
+
+    this.productService.getProducts().subscribe(products => {
+      this.products = products;
+    });
+
+    this.products$ = this.name.valueChanges.pipe(
+      map(name => this.products.filter(product => product.name.startsWith(name)))
+    );
   }
 
   ngOnDestroy(): void {
