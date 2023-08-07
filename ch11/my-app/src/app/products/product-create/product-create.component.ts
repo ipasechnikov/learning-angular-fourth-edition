@@ -21,6 +21,7 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
   }>;
 
   products: Product[] = [];
+  categories = ['Hardware', 'Computers', 'Clothing', 'Software'];
   products$: Observable<Product[]> | undefined;
   showPriceRangeHint: boolean = false;
 
