@@ -1,6 +1,6 @@
-<button [hidden]="authService.isLoggedIn" (click)="authService.login().subscribe()">
+<button mat-raised-button [hidden]="authService.isLoggedIn" (click)="authService.login().subscribe()">
   Login
 </button>
-<button [hidden]="!authService.isLoggedIn" (click)="authService.logout()">
+<button mat-raised-button [hidden]="!authService.isLoggedIn" (click)="authService.logout()">
   Logout
 </button>
