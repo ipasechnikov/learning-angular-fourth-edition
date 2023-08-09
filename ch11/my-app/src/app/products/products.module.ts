@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
@@ -14,6 +15,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { SortPipe } from './sort.pipe';
+import { PriceComponent } from './price/price.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { SortPipe } from './sort.pipe';
     SortPipe,
     ProductHostDirective,
     ProductViewComponent,
-    ProductCreateComponent
+    ProductCreateComponent,
+    PriceComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import { SortPipe } from './sort.pipe';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   exports: [
     ProductListComponent

@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of, switchMap } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { Observable, filter, of, switchMap } from 'rxjs';
 
 import { AuthService } from 'src/app/auth/auth.service';
 import { Product } from 'src/app/products/product';
 import { ProductsService } from '../products.service';
 import { CartService } from 'src/app/cart/cart.service';
+import { PriceComponent } from '../price/price.component';
 
 @Component({
   selector: 'app-product-detail',
@@ -25,7 +27,8 @@ export class ProductDetailComponent implements OnInit, OnChanges {
     private readonly productService: ProductsService,
     public readonly authService: AuthService,
     private readonly route: ActivatedRoute,
-    private readonly cartService: CartService
+    private readonly cartService: CartService,
+    private readonly dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -43,8 +46,11 @@ export class ProductDetailComponent implements OnInit, OnChanges {
     this.cartService.addProduct(product)
   }
 
-  changePrice(product: Product, price: number): void {
-    this.productService.updateProduct(product.id, price).subscribe(() => {
+  changePrice(product: Product): void {
+    this.dialog.open(PriceComponent).afterClosed().pipe(
+      filter(price => !!price),
+      switchMap(price => this.productService.updateProduct(product.id, price))
+    ).subscribe(() => {
       alert(`The price of ${product.name} was changed!`);
     });
   }
