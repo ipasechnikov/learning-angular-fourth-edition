@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-price',
@@ -10,5 +10,13 @@ export class PriceComponent {
 
   price: number | undefined;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: number) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: number,
+    private dialogRef: MatDialogRef<PriceComponent>
+  ) { }
+
+  save() {
+    this.dialogRef.close(this.price);
+  }
+
 }
