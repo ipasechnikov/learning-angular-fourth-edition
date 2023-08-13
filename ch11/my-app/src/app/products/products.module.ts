@@ -8,6 +8,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
@@ -39,7 +40,8 @@ import { PriceComponent } from './price/price.component';
     MatAutocompleteModule,
     MatSelectModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatSortModule
   ],
   exports: [
     ProductListComponent
