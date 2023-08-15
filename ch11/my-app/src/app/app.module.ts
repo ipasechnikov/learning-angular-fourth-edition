@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { GoogleMapsModule } from '@angular/google-maps';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,13 +18,15 @@ import { CartComponent } from './cart/cart.component';
 import { MapComponent } from './map/map.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductsModule } from './products/products.module';
+import { PlayerComponent } from './player/player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CartComponent,
     PageNotFoundComponent,
-    MapComponent
+    MapComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { ProductsModule } from './products/products.module';
     BrowserAnimationsModule,
     MatButtonModule,
     MatToolbarModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    YouTubePlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
