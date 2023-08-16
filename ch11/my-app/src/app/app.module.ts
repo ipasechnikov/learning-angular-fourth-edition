@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon'
 
 import { GoogleMapsModule } from '@angular/google-maps';
 import { YouTubePlayerModule } from '@angular/youtube-player';
@@ -19,6 +23,7 @@ import { MapComponent } from './map/map.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductsModule } from './products/products.module';
 import { PlayerComponent } from './player/player.component';
+import { CopyTextComponent } from './copy-text/copy-text.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,8 @@ import { PlayerComponent } from './player/player.component';
     CartComponent,
     PageNotFoundComponent,
     MapComponent,
-    PlayerComponent
+    PlayerComponent,
+    CopyTextComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +45,12 @@ import { PlayerComponent } from './player/player.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatToolbarModule,
+    MatFormFieldModule,
+    MatIconModule,
     GoogleMapsModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    ClipboardModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
