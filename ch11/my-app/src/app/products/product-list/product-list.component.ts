@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { Product } from 'src/app/products/product';
 import { ProductsService } from '../products.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-product-list',
@@ -27,6 +28,10 @@ export class ProductListComponent implements OnInit {
 
   onAdd(product: Product): void {
     this.products?.data.push(product);
+  }
+
+  reorder(event: CdkDragDrop<Product[]>) {
+    moveItemInArray(this.products.data, event.previousIndex, event.currentIndex);
   }
 
   private getProducts(): void {

@@ -16,3 +16,9 @@
 </table>
 <mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,15]"></mat-paginator>
 <app-product-create (added)="onAdd($event)"></app-product-create>
+
+<mat-list cdkDropList (cdkDropListDropped)="reorder($event)">
+  <mat-list-item cdkDrag *ngFor="let product of products.data">
+    {{product.name}}
+  </mat-list-item>
+</mat-list>
