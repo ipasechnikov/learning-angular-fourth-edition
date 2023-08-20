@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { StubComponent } from './stub/stub.component';
+import { SpyComponent } from './spy/spy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StubComponent
+    StubComponent,
+    SpyComponent
   ],
   imports: [
     BrowserModule
