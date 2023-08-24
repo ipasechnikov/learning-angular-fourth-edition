@@ -13,4 +13,8 @@ export class AsyncService {
   getData(): Observable<string[]> {
     return of(heroes).pipe(delay(500));
   }
+
+  setData(name: string): string[] {
+    return [...heroes, name];
+  }
 }
