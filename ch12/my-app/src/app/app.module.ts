@@ -9,6 +9,7 @@ import { AsyncComponent } from './async/async.component';
 import { BindingsComponent } from './bindings/bindings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListPipe } from './list.pipe';
+import { CopyrightDirective } from './copyright.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ListPipe } from './list.pipe';
     SpyComponent,
     AsyncComponent,
     BindingsComponent,
-    ListPipe
+    ListPipe,
+    CopyrightDirective
   ],
   imports: [
     BrowserModule,
