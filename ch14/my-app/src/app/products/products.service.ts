@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map, of } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { Observable, catchError, map, retry, throwError } from 'rxjs';
 
 import { Product } from './product';
 
@@ -25,7 +25,9 @@ export class ProductsService {
     return this.http.get<ProductDTO[]>(this.productsUrl).pipe(
       map(products => products.map(product => {
         return this.convertToProduct(product);
-      }))
+      })),
+      retry(2),
+      catchError(this.handleError)
     );
   }
 
@@ -33,6 +35,23 @@ export class ProductsService {
     return this.http.get<ProductDTO>(`${this.productsUrl}/${id}`).pipe(
       map(product => this.convertToProduct(product))
     );
+  }
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    switch(error.status) {
+      case 0:
+        console.error('Client error:', error.error);
+        break;
+      case HttpStatusCode.InternalServerError:
+        console.error('Server error:', error.error);
+        break;
+      case HttpStatusCode.BadRequest:
+        console.log('Request error:', error.error);
+        break;
+      default:
+        console.error('Unknown error:', error.error);
+    }
+    return throwError(() => error);
   }
 
   addProduct(name: string, price: number): Observable<Product> {
